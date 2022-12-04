@@ -16,7 +16,6 @@ fs.readFile('./input', 'utf8', (err, data) => {
   
   // Loop through the array and assign top three biggest values
   	while(++i < data.length) {
-		//slice the string into two equal parts
 		let line = data[i].split(',').map(String);
 		let assignments1 = line[0].split('-').map(Number);
 		let assignments2 = line[1].split('-').map(Number);
@@ -38,22 +37,3 @@ fs.readFile('./input', 'utf8', (err, data) => {
 	console.log(`First ⭐️: ${star1}`); //498
   	console.log(`Second ⭐️: ${star2}`);
 });
-
-
-function assignPriority(letter){
-	//assign priorities 1 through 26 to Lowercase letter types a through z
-	let i = 0
-	let alpha = Array.from(Array(26)).map((e, j) => j + 65 + 32);
-	let alphabet = alpha.map((x) => String.fromCharCode(x));
-	while(++i < 27){
-		if (letter == alphabet[i-1])
-			return i 
-	}
-	i = 0
-	alpha = Array.from(Array(26)).map((e, k) => k + 65);
-	alphabet = alpha.map((x) => String.fromCharCode(x));
-	while(++i < 27){
-		if (letter === alphabet[i-1])
-			return i + 26
-	}
-}
