@@ -1,0 +1,39 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build Status
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [14.x]
+
+    steps:
+    - name: Coverage
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        cd 2022
+        RESULTADO="$(npm run coverage | grep 'All files')"
+        RES2=$(cut -d '|' -f 5 <<< "$RESULTADO")
+        echo "COVERAGE=$(echo $RES2 | tr -d ' ')" >> $GITHUB_ENV
+    - name: Create the Badge
+      uses: schneegans/dynamic-badges-action@v1.0.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: c3d391164d6762a338d6b1763b9046cd
+        filename: trustos-certapi${{ env.BRANCH }}.json
+        label: Test Coverage
+        message: ${{ env.COVERAGE }}
+        color: green
+        namedLogo: Chai
