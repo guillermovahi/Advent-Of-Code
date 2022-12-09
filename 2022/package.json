@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "c8": "^7.12.0",
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0"
+  },
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha --recursive || true",
+    "coverage": "c8 --reporter=lcov --report-dir=coverage --reporter=text npm run test"
+  }
+}
