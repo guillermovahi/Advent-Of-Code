@@ -36,4 +36,4 @@ jobs:
         label: Test Coverage
         message: ${{ env.COVERAGE }}
         color: green
-        namedLogo: Chai
+        namedLogo: Mocha
