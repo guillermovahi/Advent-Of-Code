@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Coverage
-      if: github.ref == 'refs/heads/develop'
+      if: github.ref == 'refs/heads/main'
       run: |
         cd 2022
         RESULTADO="$(npm run coverage | grep 'All files')"
