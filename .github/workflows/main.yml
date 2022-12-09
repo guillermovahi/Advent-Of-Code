@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Build Status
+name: Coverage GitHub Action
 
 on:
   push:
@@ -23,8 +23,6 @@ jobs:
     - name: Coverage
       if: github.ref == 'refs/heads/main'
       run: |
-        echo $(pwd)
-        cd 2022
         RESULTADO="$(npm run coverage | grep 'All files')"
         RES2=$(cut -d '|' -f 5 <<< "$RESULTADO")
         echo "COVERAGE=$(echo $RES2 | tr -d ' ')" >> $GITHUB_ENV
